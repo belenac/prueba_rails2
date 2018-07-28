@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <% @status.each_slice(3) do |row| %>
+      <% row.each do |s| %>
+        <div class="col-md-4">
+          <%= image_tag s.todo.photo, class: 'img-fluid' %>
+          <h4><%= s.todo.name %></h4>
+          <% if s.status == false %>
+            <%= link_to 'Listo', complete_path(s), class: 'btn btn-success' %>
+          <% else %>
+            Tarea Completada
+            <%= link_to "Edit", edit_path(s), class:'btn btn-warning' %>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="w-100"></div>
+    <% end %>
+  </div>
+</div>

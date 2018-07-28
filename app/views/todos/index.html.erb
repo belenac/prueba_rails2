@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <% @todos.each_slice(3) do |row| %>
+      <% row.each do |todos| %>
+        <div class="col-md-4">
+          <%= image_tag todos.photo, class: 'img-fluid' %>
+          <h4><%= todos.name %></h4>
+          
+            <%= link_to 'Agregar tarea', todo_statuses_path(todos), class: 'btn btn-success', method: :post %>
+         
+          <%= link_to "Show", todos, class:'btn btn-primary' %>
+          
+        </div>
+      <% end %>
+      <div class="w-100"></div>
+    <% end %>
+  </div>
+</div>
