@@ -2,6 +2,7 @@ class StatusesController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @todos = Todo.all
     @status = current_user.statuses
     @user = User.all
   end

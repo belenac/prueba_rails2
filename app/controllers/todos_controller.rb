@@ -4,6 +4,7 @@ class TodosController < ApplicationController
   end
 
   def show
+    @todos = Todo.all
     @todo = Todo.find(params[:id])
     @user = User.all
     @starus = Status.all
