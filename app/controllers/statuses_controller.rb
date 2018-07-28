@@ -8,7 +8,10 @@ class StatusesController < ApplicationController
 
   def create
     @todo = Todo.find(params[:todo_id])
-    @starus = Status.new(todo: @todo, user: current_user)
+    @status = Status.find_by(todo: @todo, user: current_user)
+    if @starus == nil
+      @starus = Status.create(todo: @todo, user: current_user)
+    end
     if @starus.save
       redirect_to root_path, notice: 'Has completado esta tarea'
     else
@@ -23,7 +26,7 @@ class StatusesController < ApplicationController
   def update
     @status = Status.find(params[:id])
     @status.update(status_params)
-    redirect_to statuses_path
+    redirect_to root_path
   end
 
   def complete
@@ -33,6 +36,8 @@ class StatusesController < ApplicationController
     redirect_to statuses_path
   end
 
+  private
+  
   def status_params
     params.require(:status).permit(:status)
   end

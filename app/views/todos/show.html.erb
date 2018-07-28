@@ -1,6 +1,10 @@
 <div class="container">
   <h3>ToDo</h3>
   <p><%= @todo.name %></p>
-  
+  <ul>
+  <% @todo.users.each do |u| %>
+      <li><%= u.email %></li>
+  <% end %>
+  </ul>
   <%= link_to  "Volver", todos_path, class:'btn btn-default' %>
 </div>
