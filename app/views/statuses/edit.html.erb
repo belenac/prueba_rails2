@@ -1,5 +1,5 @@
 <div class="container">
-  <%= form_with model: @status, url: statuses_path, local: true do |f| %>
+  <%= form_with model: @status, url: todo_status_path, local: true do |f| %>
     <div class="form-group">
       <%= f.label :status, 'Estado tarea:', class:'form-control'  %>
       <%= f.check_box :status %>

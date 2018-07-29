@@ -27,7 +27,7 @@ class StatusesController < ApplicationController
 
   def update
     @status = Status.find(params[:id])
-    @status.update!
+    @status.update(status_params)
     redirect_to statuses_path
   end
 
@@ -36,5 +36,10 @@ class StatusesController < ApplicationController
     @status.status = true
     @status.save
     redirect_to statuses_path
+  end
+
+  private
+  def status_params
+    params.require(:status).permit(:status)
   end
 end
