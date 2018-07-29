@@ -5,13 +5,13 @@
         <div class="col-md-4">
           <%= image_tag todos.photo, class: 'img-fluid' %>
           <h4><%= todos.name %></h4>
-          <% unless todos.completed?(current_user) %>
+          <% unless todos.todoadd?(current_user) %>
             <%= link_to 'Agregar tarea', todo_statuses_path(todos), class: 'btn btn-success', method: :post %>
           <% else %>
-            <%= link_to "Tarea Agregada", statuses_path, class:'btn btn-warning' %>
+            <%= link_to 'Tarea Agregada', statuses_path, class:'btn btn-warning' %>
           <% end %>
          
-          <%= link_to "Show", todos, class:'btn btn-primary' %>
+          <%= link_to 'Ver detalle de tarea', todos, class:'btn btn-primary' %>
           
         </div>
       <% end %>
