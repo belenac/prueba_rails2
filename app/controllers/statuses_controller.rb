@@ -22,12 +22,13 @@ class StatusesController < ApplicationController
 
   def edit
     @status = Status.find(params[:id])
+    @todos = Todo.all
   end
 
   def update
     @status = Status.find(params[:id])
-    @status.update(status_params)
-    redirect_to root_path
+    @status.update!
+    redirect_to statuses_path
   end
 
   def complete
@@ -35,11 +36,5 @@ class StatusesController < ApplicationController
     @status.status = true
     @status.save
     redirect_to statuses_path
-  end
-
-  private
-  
-  def status_params
-    params.require(:status).permit(:status)
   end
 end

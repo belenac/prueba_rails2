@@ -9,7 +9,7 @@
             <%= link_to 'Listo', complete_path(s), class: 'btn btn-success' %>
           <% else %>
             Tarea Completada
-            <%= link_to "Edit", edit_path(s), class:'btn btn-warning' %>
+            <%= link_to "Edit", edit_todo_status_path(id: s.id, todo_id: s.todo.id ), class:'btn btn-warning' %>
           <% end %>
         </div>
       <% end %>

@@ -1,8 +1,8 @@
 <div class="container">
-  <%= form_with model: @status, local: true do |f| %>
+  <%= form_with model: @status, url: statuses_path, local: true do |f| %>
     <div class="form-group">
-      <%= f.label :status, "Completado" %>
-      <%= f.check_box :status, class:'form-control' %>
+      <%= f.label :status, 'Estado tarea:', class:'form-control'  %>
+      <%= f.check_box :status %>
     </div>
     <%= f.submit "Enviar", class:'btn btn-default' %>
   <% end %>
