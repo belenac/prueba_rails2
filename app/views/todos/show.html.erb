@@ -1,16 +1,46 @@
-<div class="container">
-  <h3>ToDo</h3>
-  <p><%= @todo.name %></p>
-  <ul>
-  <p>Usuarios que han completado la tarea</p>
-  <% @s.each do |u| %>
-      <li><%= u.user.email %></li>
-  <% end %>
-
-  <p>Usuarios que han agregado la tarea</p>
-  <% @todo.users.each do |u| %>
-      <li><%= u.email %></li>
-  <% end %>
-  </ul>
-  <%= link_to  "Volver", todos_path, class:'btn btn-default' %>
+<div class="container seccion">
+  <div class="row">
+    <div class="col">
+      <h1><small>ToDo</small> <%= @todo.name %></h1>
+    </div>
+    <div class="w-100"></div>
+    <div class="col">
+      <p>Usuarios que han agregado la tarea</p>
+      <ul class="list-group">
+        <% @todo.users.each do |u| %>
+          <li class="list-group-item"><%= u.email %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col">
+      <%# image_tag @todo.photo, class:'img-fluid' %>
+      &nbsp;
+    </div>
+    <div class="w-100 p-4"></div>
+    <div class="col">
+     <p>Usuarios que han completado la tarea</p>
+      <div class="row">
+        <% @s.each_slice(4) do |row| %>
+            <% row.each do |u| %>
+              <div class="col-3">
+                <div class="card">
+                  <%= image_tag u.user.photo, class:'card-img-top' %>
+                  <div class="card-body">
+                    <p class="card-text"><%= u.user.name %><br><small><%= u.user.email %></small></p>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <div class="w-100"></div>
+      <% end %>
+      </div>
+      
+    </div>
+    <div class="w-100"></div>
+    <div class="col">
+      <div class="d-flex justify-content-end">
+        <%= link_to  "Volver", todos_path, class:'btn btn-outline-info' %>
+      </div>
+    </div>
+  </div>
 </div>

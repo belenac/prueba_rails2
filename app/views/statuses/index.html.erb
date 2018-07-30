@@ -1,16 +1,22 @@
-<div class="container">
-  <div class="row">
+<div class="container seccion">
+  <div class="card-columns">
     <% @status.each_slice(3) do |row| %>
       <% row.each do |s| %>
-        <div class="col-md-4">
-          <%= image_tag s.todo.photo, class: 'img-fluid' %>
-          <h4><%= s.todo.name %></h4>
-          <% if s.status == false %>
-            <%= link_to 'Listo', complete_path(s), class: 'btn btn-success' %>
-          <% else %>
-            Tarea Completada
-            <%= link_to "Edit", edit_todo_status_path(id: s.id, todo_id: s.todo.id ), class:'btn btn-warning' %>
-          <% end %>
+        <div class="card">
+          <%= image_tag s.todo.photo, class: 'card-img-top' %>
+          <div class="card-body">
+            <h5 class="card-title"><%= s.todo.name %></h5>
+            <% if s.status == false %>
+              <div class="d-flex justify-content-end">
+                <%= link_to 'Listo', complete_path(s), class: 'btn btn-outline-success' %>
+              </div>
+            <% else %>
+              <p class="card-text">Tarea Completada</p>
+              <div class="d-flex justify-content-end">
+                <%= link_to "Edit", edit_todo_status_path(id: s.id, todo_id: s.todo.id ), class:'btn btn-outline-warning' %>
+              </div>
+            <% end %>
+          </div>
         </div>
       <% end %>
       <div class="w-100"></div>

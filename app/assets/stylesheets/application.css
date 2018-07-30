@@ -14,4 +14,6 @@
  *= require_self
  */
 
+.seccion { padding: 2rem 0; }
 .col-md-4 { margin-top: 1em; }
+.dropdown:hover>.dropdown-menu { display: block; }

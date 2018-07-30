@@ -1,8 +1,8 @@
 class StatusesController < ApplicationController
+  before_action :findstatus, only: [:complete, :update, :edit]
   before_action :authenticate_user!
 
   def index
-    @todos = Todo.all
     @status = current_user.statuses
     @user = User.all
   end
@@ -21,18 +21,14 @@ class StatusesController < ApplicationController
   end
 
   def edit
-    @status = Status.find(params[:id])
-    @todos = Todo.all
   end
 
   def update
-    @status = Status.find(params[:id])
     @status.update(status_params)
     redirect_to statuses_path
   end
 
   def complete
-    @status = Status.find(params[:id])
     @status.status = true
     @status.save
     redirect_to statuses_path
@@ -41,5 +37,9 @@ class StatusesController < ApplicationController
   private
   def status_params
     params.require(:status).permit(:status)
+  end
+
+  def findstatus
+    @status = Status.find(params[:id])
   end
 end
